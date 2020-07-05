@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>NewsBite</title>
+	<!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+	<style type="text/css">
+		.containers{
+			background-color: #033;
+
+		}
+		.navbar{
+			background-color: #eee;
+			position: sticky;
+			z-index: 1;
+			top: 0;
+		}
+		.row{
+			margin:0;
+		}
+		.active{
+			font-size:18px;	
+			/*cursor: pointer;*/
+		}
+		.nav-item{
+			cursor: pointer;
+		}
+		.mb-4{
+			margin-top:10px;
+			/*padding:10px;*/
+		}
+		.mr-sm-2{
+			    display: block;
+    			/* width: 100%; */
+			    height: calc(1.5em + .75rem + 2px);
+			    padding: .375rem .75rem;
+			    font-size: 1rem;
+			    font-weight: 400;
+			    line-height: 1.5;
+			    color: #495057;
+			    background-color: #fff;
+			    background-clip: padding-box;
+			    border: 1px solid #ced4da;
+			    border-radius: .25rem;
+			    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+		}
+		@media (max-width: 400px) { 
+			.row-cols-md-4{
+				flex: 0 0 25%;
+				max-width: 50%;
+			}
+		}
+
+	</style>
+
+</head>
+<body>
+
+<div class="containers">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">NewsBite</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="true" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon">
+    </span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav nav-tabs mr-auto mt-2 mt-lg-0">
+      <li class="nav-item {%if request.resolver_match.url_name == 'home' %} active {% endif %}" >
+        <a class="nav-link" href="{% url 'home' %}">News Today</a>
+      </li>
+      <li class="nav-item {%if request.resolver_match.url_name == 'econo' %} active {% endif %}" >
+        <a class="nav-link " href="{% url 'econo' %}" >Economy</a>
+      </li>
+      <li class="nav-item {%if request.resolver_match.url_name == 'tech' %} active {% endif %} ">
+        <a class="nav-link" href="{% url 'tech' %}">Technology</a>
+      </li>
+       <li class="nav-item {%if request.resolver_match.url_name == 'sport' %} active {% endif %} ">
+        <a class="nav-link" href="{% url 'sport' %}">Sports</a>
+      </li>
+    <!--   <li class="nav-item">
+        <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li> -->
+  </ul>
+      <input class=" mr-sm-2" type="search" placeholder="Search News" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="search()">Search</button>
+</div>
+</nav>
+{% block content %}
+
+{% endblock %}
+</div>
+<script type="text/javascript">
+
+	var zz=document.getElementById("coll1")
+
+	var colll=document.getElementsByClassName('col mb-4')
+		function search(){
+		var ele=''
+  		var n=document.getElementsByTagName('input')[0].value.toLowerCase()
+  		for(i=0;i<colll.length;i++){
+  			var sch=colll[i].children[0].children[1].children[1].innerHTML.toLowerCase()
+  			if(sch.includes(n)){
+  				console.log('hi')
+  				var values=[colll[i].children[0].firstElementChild.getAttribute("src"),colll[0].children[0].children[1].firstElementChild.firstChild.getAttribute("src"),colll[i].children[0].children[1].children[1].innerHTML,colll[i].children[0].children[1].children[2].getAttribute("href")];
+  				var crd='<div class="col mb-4"><div class="card h-100"><img src='+values[0]+' class="card-img-top" alt="..."><div class="card-body"><figure><img class="img-fluid" src='+values[1]+'></figure><p class="card-text">'+values[2]+'</p><a href='+values[3]+'  class="card-link">Card link</a></div></div></div>'
+  				ele+=crd
+  			}
+  		}
+  		zz.innerHTML=ele
+
+  		}
+ 
+</script>
+</body>
+</html>

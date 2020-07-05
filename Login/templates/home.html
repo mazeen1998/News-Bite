@@ -1,0 +1,20 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+
+<div id='coll1' class="row row-cols-1 row-cols-md-2  row-cols-lg-3 row-cols-xl-4 ">
+  {% for i in data %}
+  <div class="col mb-4">
+    <div class="card h-100">
+      <img src={{i.0}} title="" class="card-img-top" alt="...">
+      <div class="card-body">
+        <figure>{{i.3 | safe}}</figure>
+        <p class="card-text">{{i.1}}</p>
+        <a href={{i.2}} class="card-link">Full article</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

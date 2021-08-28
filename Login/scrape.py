@@ -2,6 +2,7 @@ from urllib.request import urlopen as uo
 from urllib.request import Request as r
 from bs4 import BeautifulSoup as sp
 import random
+# import requests as req
 # import threading as tr 
 class homePage():
 	url1='https://indianexpress.com/section/india/'
@@ -11,6 +12,7 @@ class homePage():
 	def sc(self):
 		# pg=r(url1,{'User-Agent':'Magic Browser'})
 		pg=r(homePage.url1, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36'})
+		# pg=req.get(homePage.url1)
 		pg=uo(pg)
 		pg_ht=pg.read()
 		pg.close()
@@ -38,6 +40,7 @@ class homePage():
 	def sc1(self):
 		pg=r(homePage.url2, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36'})
 		pg=uo(pg)
+		# pg=req.get(homePage.url2)
 		pg_ht=pg.read()
 		pg.close()
 		soup=sp(pg_ht,'html.parser')
@@ -62,6 +65,7 @@ class homePage():
 	def sc2(self):
 		pg=r(homePage.url3, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36'})
 		pg=uo(pg)
+		# pg=req.get(homePage.url3)
 		pg_ht=pg.read()
 		pg.close()
 		soup=sp(pg_ht,'html.parser')
